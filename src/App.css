@@ -1,0 +1,37 @@
+#root {
+  /* If you want a max width and centered content, do so here */
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  /* If you truly want a white background to offset the body color,
+     keep this; otherwise, remove or change it. */
+  background-color: #ffffff;
+  min-height: 100vh;
+
+  /* Ensure your text is readable with your background colors */
+  color: #213547;
+  font-family: "Inter", sans-serif;
+  text-align: left;
+}
+
+/* Example improvement for the .card class */
+.card {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+/* Example improvement for the form container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Buttons, inputs, etc. are already partially styled in index.css
+   but you can unify them in one file if that’s more convenient. */
+
+/* Additional small styling improvements here if desired */

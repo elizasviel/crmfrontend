@@ -1,0 +1,79 @@
+:root {
+  /* You can keep your font-family or other root-level variables here. */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Commment out or remove conflicting color-scheme and background if you're
+     intending to handle that in App.css: */
+  /* color-scheme: light dark; */
+
+  /* If you want a light background overall, uncomment:
+  background-color: #ffffff;
+  color: #213547;
+  */
+}
+
+/* If you want to keep a dark theme, do it here 
+:root {
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.87);
+}
+*/
+
+body {
+  margin: 0;
+  /* Remove or replace the following if it conflicts with your layout: */
+  /* display: flex;
+     place-items: center; */
+
+  /* Provide a base min-height if needed: */
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+/* Keep or remove the following if you want a separate style in App.css */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9; /* If you’re going light mode */
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Remove or fine-tune the prefers-color-scheme if you want to handle
+   dark/light mode with your own styling:
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+*/
