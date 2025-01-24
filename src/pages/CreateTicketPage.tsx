@@ -7,7 +7,7 @@ function CreateTicketPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("MEDIUM"); // default
-  const [aiSuggestions, setAiSuggestions] = useState(null);
+  const [, setAiSuggestions] = useState(null);
   const [error, setError] = useState("");
 
   async function handleCreateTicket(e: React.FormEvent) {
