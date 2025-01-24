@@ -23,18 +23,83 @@
 .card {
   background-color: var(--card-background);
   border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: var(--transition-all);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 /* Example improvement for the form container */
 .form-container {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
   max-width: 32rem;
   margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background-color: white;
+  font-size: 0.875rem;
+  transition: var(--transition-all);
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.button-secondary {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.button-secondary:hover {
+  background-color: var(--background-color);
 }
 
 .error-message {
@@ -48,25 +113,30 @@
 
 /* Ticket list styling */
 .ticket-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: grid;
   gap: 1rem;
+  padding: 0;
+  list-style: none;
 }
 
-.ticket-list li {
-  background-color: white;
-  border: 1px solid var(--border-color);
+.ticket-item {
+  background: white;
   border-radius: 0.75rem;
-  padding: 1rem;
-  transition: all 0.2s ease;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  transition: var(--transition-all);
 }
 
-.ticket-list li:hover {
+.ticket-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
 }
 
 .ticket-title {
@@ -74,14 +144,37 @@
   font-weight: 600;
   color: var(--text-primary);
   text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
 }
 
-.ticket-info {
+.ticket-meta {
+  display: flex;
+  gap: 1rem;
   font-size: 0.875rem;
   color: var(--text-secondary);
-  margin-bottom: 0.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-priority-HIGH {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.badge-priority-MEDIUM {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.badge-priority-LOW {
+  background-color: #dbeafe;
+  color: #2563eb;
 }
 
 /* Comment section styling */
@@ -145,3 +238,33 @@
    but you can unify them in one file if that's more convenient. */
 
 /* Additional small styling improvements here if desired */
+
+.analytics-dashboard {
+  padding: 2rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-card h3 {
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}

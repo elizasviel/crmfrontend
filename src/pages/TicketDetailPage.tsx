@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useSocket } from "../contexts/SocketContext";
+import { UserPresence } from "../components/UserPresence";
 
 interface User {
   id: string;
@@ -37,6 +39,7 @@ function TicketDetailPage() {
   const [newComment, setNewComment] = useState("");
   const [isInternal, setIsInternal] = useState(false);
   const [error, setError] = useState("");
+  const socket = useSocket();
 
   // Fetch the ticket data
   useEffect(() => {
@@ -82,6 +85,33 @@ function TicketDetailPage() {
     fetchComments();
   }, [ticketId]);
 
+  useEffect(() => {
+    if (!socket || !ticketId) return;
+
+    socket.emit("join-ticket", ticketId);
+
+    socket.on("comment-added", (newComment: Comment) => {
+      setComments((prev) => [...prev, newComment]);
+    });
+
+    socket.on("ticket-updated", (updatedTicket: Ticket) => {
+      setTicket(updatedTicket);
+    });
+
+    socket.on("sla-alert", (alert) => {
+      // You could use a toast notification library here
+      alert(
+        `SLA Warning: Ticket ${alert.ticketId} has exceeded its response time threshold`
+      );
+    });
+
+    return () => {
+      socket.emit("leave-ticket", ticketId);
+      socket.off("comment-added");
+      socket.off("ticket-updated");
+    };
+  }, [socket, ticketId]);
+
   // Post a new comment
   async function handlePostComment(e: React.FormEvent) {
     e.preventDefault();
@@ -120,6 +150,7 @@ function TicketDetailPage() {
   return (
     <div className="page-container">
       <div className="card">
+        <UserPresence ticketId={ticketId} />
         <h1>{ticket.title}</h1>
         <p>Status: {ticket.status}</p>
         <p>Priority: {ticket.priority}</p>

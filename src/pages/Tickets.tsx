@@ -49,6 +49,9 @@ function TicketsPage() {
 
         <div style={{ marginBottom: "1rem" }}>
           <Link to="/tickets/new">Create New Ticket</Link>
+          <Link to="/analytics" style={{ marginLeft: "1rem" }}>
+            View Analytics
+          </Link>
         </div>
 
         <ul className="ticket-list">

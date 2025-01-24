@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import "./NavBar.css";
 
 function NavBar() {
   const location = useLocation();
+  const { isAdmin, isLoggedIn } = useAuth();
 
   return (
     <nav className="navbar">
@@ -21,24 +23,42 @@ function NavBar() {
           My CRM
         </Link>
         <div className="navbar-links">
-          <Link
-            to="/tickets"
-            className={location.pathname === "/tickets" ? "active" : ""}
-          >
-            Tickets
-          </Link>
-          <Link
-            to="/login"
-            className={location.pathname === "/login" ? "active" : ""}
-          >
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className={location.pathname === "/register" ? "active" : ""}
-          >
-            Register
-          </Link>
+          {isLoggedIn && (
+            <Link
+              to="/tickets"
+              className={location.pathname === "/tickets" ? "active" : ""}
+            >
+              Tickets
+            </Link>
+          )}
+          {isAdmin && (
+            <Link
+              to="/admin/roles"
+              className={location.pathname === "/admin/roles" ? "active" : ""}
+            >
+              Manage Roles
+            </Link>
+          )}
+          {!isLoggedIn ? (
+            <>
+              <Link
+                to="/login"
+                className={location.pathname === "/login" ? "active" : ""}
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className={location.pathname === "/register" ? "active" : ""}
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <Link to="/login" onClick={() => localStorage.removeItem("token")}>
+              Logout
+            </Link>
+          )}
         </div>
       </div>
     </nav>

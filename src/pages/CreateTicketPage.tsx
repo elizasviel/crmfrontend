@@ -7,6 +7,7 @@ function CreateTicketPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("MEDIUM"); // default
+  const [aiSuggestions, setAiSuggestions] = useState(null);
   const [error, setError] = useState("");
 
   async function handleCreateTicket(e: React.FormEvent) {
@@ -34,6 +35,21 @@ function CreateTicketPage() {
       setError(err?.response?.data?.error || "Failed to create ticket");
     }
   }
+
+  const handleAnalyzeTicket = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:3000/api/ai/analyze-ticket",
+        { title, description },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setAiSuggestions(response.data);
+      setPriority(response.data.priority);
+    } catch (err) {
+      setError("Failed to analyze ticket");
+    }
+  };
 
   return (
     <div className="page-container">
@@ -73,6 +89,24 @@ function CreateTicketPage() {
           </div>
           <button type="submit">Create</button>
         </form>
+
+        <button
+          type="button"
+          onClick={handleAnalyzeTicket}
+          disabled={!title || !description}
+        >
+          Analyze with AI
+        </button>
+
+        {aiSuggestions && (
+          <div className="ai-suggestions">
+            <h3>AI Suggestions</h3>
+            <p>Suggested Priority: {aiSuggestions.priority}</p>
+            <p>Category: {aiSuggestions.category}</p>
+            <p>Suggested Team: {aiSuggestions.team}</p>
+            <p>Est. Resolution Time: {aiSuggestions.estimatedTime}</p>
+          </div>
+        )}
       </div>
     </div>
   );

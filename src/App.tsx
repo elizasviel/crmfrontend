@@ -5,6 +5,8 @@ import TicketsPage from "./pages/Tickets";
 import RegisterPage from "./pages/Register";
 import CreateTicketPage from "./pages/CreateTicketPage";
 import TicketDetailPage from "./pages/TicketDetailPage";
+import AnalyticsDashboard from "./pages/AnalyticsDashboard";
+import RoleManagement from "./components/RoleManagement";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/tickets" element={<TicketsPage />} />
         <Route path="/tickets/new" element={<CreateTicketPage />} />
         <Route path="/tickets/:ticketId" element={<TicketDetailPage />} />
+        <Route path="/analytics" element={<AnalyticsDashboard />} />
+        <Route path="/admin/roles" element={<RoleManagement />} />
       </Routes>
     </>
   );

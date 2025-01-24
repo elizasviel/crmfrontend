@@ -8,6 +8,7 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [role, setRole] = useState("CUSTOMER");
   const [error, setError] = useState("");
 
   async function handleRegister(e: React.FormEvent) {
@@ -20,60 +21,78 @@ function RegisterPage() {
           password,
           firstName,
           lastName,
+          role,
         }
       );
 
-      // Optionally navigate to login on success
-      // or automatically log the user in if you wish
-      navigate("/login");
+      const loginResponse = await axios.post(
+        "http://localhost:3000/api/users/login",
+        {
+          email,
+          password,
+        }
+      );
+
+      localStorage.setItem("token", loginResponse.data.token);
+      navigate("/tickets");
     } catch (err: any) {
       setError(err?.response?.data?.error || "Registration failed");
     }
   }
 
   return (
-    <div className="card">
-      <h1>Register</h1>
-      <form className="form-container" onSubmit={handleRegister}>
-        {error && <div className="error-message">{error}</div>}
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(evt) => setEmail(evt.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(evt) => setPassword(evt.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>First Name</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={(evt) => setFirstName(evt.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(evt) => setLastName(evt.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+    <div className="page-container">
+      <div className="card">
+        <h1>Register</h1>
+        <form className="form-container" onSubmit={handleRegister}>
+          {error && <div className="error-message">{error}</div>}
+          <div>
+            <label>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>First Name</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Role (Development Only)</label>
+            <select value={role} onChange={(e) => setRole(e.target.value)}>
+              <option value="CUSTOMER">Customer</option>
+              <option value="AGENT">Agent</option>
+              <option value="ADMIN">Admin</option>
+            </select>
+          </div>
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
   );
 }

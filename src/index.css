@@ -1,9 +1,9 @@
 :root {
   /* Modern color palette */
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
   --secondary-color: #64748b;
-  --success-color: #22c55e;
+  --success-color: #10b981;
   --danger-color: #ef4444;
   --warning-color: #f59e0b;
   --background-color: #f8fafc;
@@ -12,6 +12,16 @@
   --text-secondary: #64748b;
   --border-color: #e2e8f0;
 
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Animations */
+  --transition-all: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Font */
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
