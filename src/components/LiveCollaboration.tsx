@@ -1,5 +1,7 @@
+/*
 import { useSocket } from "../contexts/SocketContext";
 import { useState, useEffect } from "react";
+
 function LiveCollaboration({ ticketId }: { ticketId: string }) {
   const socket = useSocket();
   const [activeUsers, setActiveUsers] = useState<string[]>([]);
@@ -34,3 +36,5 @@ function LiveCollaboration({ ticketId }: { ticketId: string }) {
     </div>
   );
 }
+
+*/
