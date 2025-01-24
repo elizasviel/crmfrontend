@@ -22,14 +22,17 @@
 /* Example improvement for the .card class */
 .card {
   background-color: var(--card-background);
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
-  padding: 2rem;
-  margin-bottom: 2rem;
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
   transition: var(--transition-all);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .card:hover {
+  transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
 
@@ -46,6 +49,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .input-group {
@@ -58,7 +62,7 @@
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-md);
   background-color: white;
   font-size: 0.875rem;
   transition: var(--transition-all);
@@ -69,7 +73,7 @@
 .input-group select:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .button {
@@ -78,28 +82,34 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: var(--transition-all);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-primary {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition-all);
 }
 
-.button:hover {
+.button-primary:hover {
   background-color: var(--primary-hover);
   transform: translateY(-1px);
 }
 
 .button-secondary {
-  background-color: white;
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
 }
 
 .button-secondary:hover {
-  background-color: var(--background-color);
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .error-message {
@@ -114,17 +124,21 @@
 /* Ticket list styling */
 .ticket-list {
   display: grid;
-  gap: 1rem;
+  gap: var(--spacing-lg);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   padding: 0;
   list-style: none;
 }
 
 .ticket-item {
   background: white;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
   border: 1px solid var(--border-color);
   transition: var(--transition-all);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
 }
 
 .ticket-item:hover {
@@ -191,25 +205,29 @@
 
 /* Status badges */
 .status-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .status-open {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
 }
+
 .status-closed {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
 }
+
 .status-pending {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
 }
 
 /* Priority indicators */
@@ -245,37 +263,43 @@
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
   margin-top: 2rem;
 }
 
 .metric-card {
-  background: white;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
+  background: linear-gradient(135deg, white, #f8fafc);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
   box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .metric-card h3 {
-  margin: 0 0 1rem 0;
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
 }
 
 .metric-value {
   font-size: 2rem;
   font-weight: 600;
   color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
 }
 
 .search-container {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background-color: var(--background-color);
-  border-radius: 0.5rem;
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
 .search-input {
@@ -289,4 +313,24 @@
 
 .search-container button {
   white-space: nowrap;
+}
+
+/* Loading skeleton animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: pulse 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
 }

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -10,21 +11,27 @@ function RegisterPage() {
   const [lastName, setLastName] = useState("");
   const [role, setRole] = useState("CUSTOMER");
   const [error, setError] = useState("");
+  const { isLoggedIn } = useAuth();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/tickets");
+    }
+  }, [isLoggedIn, navigate]);
 
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users/register",
-        {
-          email,
-          password,
-          firstName,
-          lastName,
-          role,
-        }
-      );
-
+      // Register new user
+      await axios.post("http://localhost:3000/api/users/register", {
+        email,
+        password,
+        firstName,
+        lastName,
+        role,
+      });
+      // Immediately login
       const loginResponse = await axios.post(
         "http://localhost:3000/api/users/login",
         {
@@ -32,7 +39,6 @@ function RegisterPage() {
           password,
         }
       );
-
       localStorage.setItem("token", loginResponse.data.token);
       navigate("/tickets");
     } catch (err: any) {
