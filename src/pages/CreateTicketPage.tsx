@@ -98,7 +98,7 @@ function CreateTicketPage() {
           Analyze with AI
         </button>
 
-        {aiSuggestions && (
+        {/*aiSuggestions && (
           <div className="ai-suggestions">
             <h3>AI Suggestions</h3>
             <p>Suggested Priority: {aiSuggestions.priority}</p>
@@ -106,7 +106,7 @@ function CreateTicketPage() {
             <p>Suggested Team: {aiSuggestions.team}</p>
             <p>Est. Resolution Time: {aiSuggestions.estimatedTime}</p>
           </div>
-        )}
+        ) */}
       </div>
     </div>
   );

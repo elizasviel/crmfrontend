@@ -150,7 +150,7 @@ function TicketDetailPage() {
   return (
     <div className="page-container">
       <div className="card">
-        <UserPresence ticketId={ticketId} />
+        {ticketId && <UserPresence ticketId={ticketId} />}
         <h1>{ticket.title}</h1>
         <p>Status: {ticket.status}</p>
         <p>Priority: {ticket.priority}</p>
