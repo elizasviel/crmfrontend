@@ -24,16 +24,19 @@ function RegisterPage() {
     e.preventDefault();
     try {
       // Register new user
-      await axios.post("http://localhost:3000/api/users/register", {
-        email,
-        password,
-        firstName,
-        lastName,
-        role,
-      });
+      await axios.post(
+        "https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/users/register",
+        {
+          email,
+          password,
+          firstName,
+          lastName,
+          role,
+        }
+      );
       // Immediately login
       const loginResponse = await axios.post(
-        "http://localhost:3000/api/users/login",
+        "https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/users/login",
         {
           email,
           password,

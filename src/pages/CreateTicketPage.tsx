@@ -21,7 +21,7 @@ function CreateTicketPage() {
       }
 
       await axios.post(
-        "http://localhost:3000/api/tickets",
+        "https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/tickets",
         { title, description, priority },
         {
           headers: {
@@ -40,7 +40,7 @@ function CreateTicketPage() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:3000/api/ai/analyze-ticket",
+        "https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/ai/analyze-ticket",
         { title, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );

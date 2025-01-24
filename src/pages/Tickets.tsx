@@ -31,7 +31,7 @@ function TicketsPage() {
       }
 
       const response = await axios.get(
-        `http://localhost:3000/api/tickets/search?query=${searchQuery}`,
+        `https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/tickets/search?query=${searchQuery}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           params: {
@@ -56,9 +56,12 @@ function TicketsPage() {
           return;
         }
 
-        const response = await axios.get("http://localhost:3000/api/tickets", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          "https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/tickets",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         if (!Array.isArray(response.data)) {
           throw new Error(

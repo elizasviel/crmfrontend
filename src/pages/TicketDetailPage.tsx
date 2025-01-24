@@ -49,7 +49,7 @@ function TicketDetailPage() {
         if (!token || !ticketId) return;
 
         const response = await axios.get(
-          `http://localhost:3000/api/tickets/${ticketId}`,
+          `https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/tickets/${ticketId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -71,7 +71,7 @@ function TicketDetailPage() {
         if (!token || !ticketId) return;
 
         const response = await axios.get(
-          `http://localhost:3000/api/tickets/${ticketId}/comments`,
+          `https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/tickets/${ticketId}/comments`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -120,7 +120,7 @@ function TicketDetailPage() {
       if (!token || !ticketId) return;
 
       const res = await axios.post(
-        `http://localhost:3000/api/tickets/${ticketId}/comments`,
+        `https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/tickets/${ticketId}/comments`,
         {
           content: newComment,
           isInternal,
