@@ -27,12 +27,9 @@ function RoleManagement() {
         return;
       }
 
-      const response = await axios.get(
-        "https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/users",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await axios.get("http://localhost:3000/api/users", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setUsers(response.data);
     } catch (err: any) {
       setError(err?.response?.data?.error || "Failed to fetch users");
@@ -43,7 +40,7 @@ function RoleManagement() {
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        `https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/users/${userId}/role`,
+        `http://localhost:3000/api/users/${userId}/role`,
         { role: newRole },
         {
           headers: { Authorization: `Bearer ${token}` },
