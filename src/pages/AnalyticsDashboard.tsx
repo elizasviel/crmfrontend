@@ -26,7 +26,7 @@ function AnalyticsDashboard() {
         }
 
         const response = await axios.get(
-          "http://localhost:3000/api/analytics/dashboard",
+          "https://crmbackendnorman-85f274ff87d9.herokuapp.com/api/analytics/dashboard",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

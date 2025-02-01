@@ -10,9 +10,12 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const newSocket = io("http://localhost:3000", {
-      auth: { token },
-    });
+    const newSocket = io(
+      "https://crmbackendnorman-85f274ff87d9.herokuapp.com",
+      {
+        auth: { token },
+      }
+    );
 
     setSocket(newSocket);
 
